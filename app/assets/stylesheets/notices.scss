@@ -1,0 +1,44 @@
+@import "global_settings";
+
+.notice {
+  list-style: none;
+  text-align: center;
+  color: green;
+
+  &__message {
+    font-family: $app_font;
+    border-bottom: 1px solid green;
+    margin: 0 auto;
+    width: 25%;
+  }
+}
+
+.alert {
+  list-style: none;
+  text-align: center;
+
+  &__message {
+    font-family: $app_font;
+    color: red;
+    border-bottom: 1px solid red;
+    margin: 0 auto;
+    width: 25%;
+  }
+}
+
+.error {
+  list-style: none;
+  text-align: center;
+  color: red;
+
+  &__message {
+    font-family: $app_font;
+    margin: 0 auto;
+    width: 25%;
+    border-bottom: 1px solid red;
+  }
+
+  &__message-devise {
+    list-style: none;
+  }
+}

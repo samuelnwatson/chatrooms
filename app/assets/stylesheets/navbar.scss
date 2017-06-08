@@ -1,0 +1,31 @@
+@import "global_settings";
+
+.navbar {
+  list-style: none;
+  margin: 0 auto;
+  width: 50%;
+  padding: 0;
+  text-align: center;
+  border-bottom: 1px solid $color_link;
+
+  &__element {
+    font-family: $app_font;
+    color: $color_non_link;
+    display: inline;
+    margin-right: 1em;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color_link;
+  }
+
+  &__link:hover {
+    color: $color_active;
+  }
+
+  &__link-title {
+    font-size: 200%;
+    font-weight: 200;
+  }
+}

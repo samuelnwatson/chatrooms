@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      <% if content_for :title %>
+        <%= yield :title %>
+      <% else %>
+        Chatrooms
+      <% end %>  
+    </title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= action_cable_meta_tag %>
+    <%= javascript_include_tag "https://cdn.jsdelivr.net/emojione/2.2.7/lib/js/emojione.min.js"%>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="manifest" href="/manifest.json">
+  </head>
+
+  <body>
+    <nav>
+      <ul class="navbar">
+        <li class="navbar__element">
+          <%= link_to "Chatrooms", root_path, class: "navbar__link navbar__link-title" %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="navbar__element">
+            Hi <%= current_user.username %>!
+          </li>
+          <% if admin? %>
+            <li class="navbar__element">
+              <%= link_to "Admin", admin_root_path, class: "navbar__link" %>
+            </li>
+          <% end %>
+          <li class="navbar__element">
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "navbar__link" %>
+          </li>
+        <% else %>
+          <li class="navbar__element">
+            <%= link_to "Sign Up", new_user_registration_path, class: "navbar__link" %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+
+    <span class="alert container"><br />
+      <% flash.each do |key, message| %>
+        <div>
+          <span class="<%= key %> <%= key %>__message">
+            <%= message %>
+          </span>
+        </div>
+      <% end %>
+    </span>
+
+    <div>
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

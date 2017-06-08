@@ -1,0 +1,9 @@
+<h3 class="menu">Chatrooms Admin Page</h3>
+
+<p class="menu">
+  <ul class="menu__element">
+    <% @admins.each do |admin| %>
+      <li class="menu"><%= admin.username %></li><br>
+    <% end %>
+  </ul>
+</p>

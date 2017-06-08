@@ -1,0 +1,49 @@
+@import "global_settings";
+
+.list {
+  list-style: none;
+  font-family: $app_font;
+
+  &__user {
+    color: grey;
+    text-align: left;
+    word-wrap:break-word;
+  }
+
+  &__user-online {
+    color: green;
+  }
+
+  &__user-offline {
+    color: red;
+  }
+
+  &__post-all {
+    height: 20em;
+    overflow: hidden;
+    overflow-y: auto;
+    margin-right: 20em;
+  }
+
+  &__post {
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40%;
+    border-radius: 1em;
+    max-width: 30em;
+    word-wrap:break-word;
+  }
+
+  &__post-myself {
+    color: black;
+    background-color: $color_myself;
+  }
+
+  &__post-other {
+    color: black;
+    background-color: $color_other;
+  }
+}

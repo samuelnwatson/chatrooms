@@ -1,0 +1,60 @@
+@import "global_settings";
+
+.menu {
+  font-family: $app_font;
+  color: $color_non_link;
+  text-align: center;
+
+  &__chatroom {
+    color: $color_link;
+    border-bottom: 1px solid $color_link;
+    margin: 0 auto;
+    width: 15%;
+  }
+
+  &__chatroom-typing {
+    color: $color_active;
+  }
+
+  &__typing-image {
+    height: 2em;
+    width: 3em;
+    padding-bottom: 0em;
+  }
+
+  &__users {
+    display: inline;
+    float:left;
+    margin-left: 10em;
+  }
+
+  &__users-elements {
+    font-family: $app_font;
+    color: $color_non_link;
+    border-bottom: $color_link;
+    float: left;
+    display: inline;
+  }
+
+  &__element {
+    list-style: none;
+  }
+
+  &__element-admin {
+    text-decoration: none;
+    color: $color_active;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  &__element-link {
+    text-decoration: none;
+    color: $color_link;
+
+    &:hover {
+      color: $color_active;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import "global_settings";
+
+.button {
+  &__submit {
+    border: 1px #000;
+    background: $color_link;
+    color: white;
+    border-radius: 2em;
+  }
+
+  &__submit-medium {
+    width: 8em;
+    height: 3em;
+  }
+
+  &__submit-large {
+  }
+
+  &__submit:hover {
+    background: white;
+    border: solid 1px $color_link;
+    color: $color_link;
+  }
+
+  &__submit:active {
+    background: white;
+    border: solid 1px $color_active;
+    color: $color_active;
+  }
+}

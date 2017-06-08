@@ -1,0 +1,18 @@
+<div>
+  <% if post.errors.any? %>
+    <ul>
+      <% post.errors.full_messages.each do |err| %>
+        <li><%= err %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form_for post, remote: true, class: "menu" do |f| %>
+    <%= f.label :content, "Post something", class: "menu" %><br>
+    <%= f.text_area :content, data: { user_typing: "#{current_user.username}" } %>
+
+    <%= f.hidden_field :chatroom_id, value: chatroom.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %><br>
+    <%= f.submit 'Send', class: "button__submit button__submit-medium" %>
+  <% end %>
+</div>

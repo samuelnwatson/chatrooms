@@ -1,0 +1,18 @@
+<div>
+  <p class="menu">Write a topic for the chatroom</p>
+  <% if chatroom.errors.any? %>
+  <ul class="error">
+    <% chatroom.errors.full_messages.each do |err| %>
+      <li class="error__message"><%= err %></li>
+    <% end %>
+  </ul>
+  <% end %>
+  <%= form_for chatroom, html: { class: "menu" } do |f| %>
+    <%= f.label :topic, class: "menu" %><br />
+    <%= f.text_field :topic %><br />
+    <%= f.label :description, class: "menu" %><br />
+    <%= f.text_area :description %><br /><br />
+
+    <%= f.submit class: "button__submit" %>
+  <% end %>
+</div>

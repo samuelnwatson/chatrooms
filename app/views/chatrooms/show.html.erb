@@ -1,0 +1,55 @@
+<% content_for :title do %>
+  <%= @chatroom.topic.parameterize %>
+<% end %>
+
+<div class="container">
+  <h2 data-chatroom-id="<%= @chatroom.id %>" class="menu">Chatroom: <%= @chatroom.topic %></h2>
+  <div class="menu">
+    <p><%= emojify(markdown(@chatroom.description)) %></p>
+    <% if current_user.is_admin? || creator?(@chatroom) %>
+      <%= link_to "[ Delete Chatroom ]",
+        chatroom_path,
+        class: "menu__element-admin",
+        method: :delete,
+        data: { confirm: "delete this chatroom?" }
+      %>
+      <%= link_to "[ Edit Chatroom ]",
+        edit_chatroom_path(@chatroom),
+        class: "menu__element-admin" %>
+    <% end %>
+  </div>
+
+  <% if user_signed_in? %>
+    <div class="menu__users">
+      <h4 class="menu__users-elements">Users: </h4>
+      <br><br><br>
+      <ul class="list" data-users-online="<%= @chatroom.id %>">
+        <% @chatroom.users.all.each do |user| %>
+          <% if fetch_subscribers.include? user.username %>
+            <li class="list__user list__user-online" data-user-id="<%= user.username %>">
+              *<%= user.username %>
+            </li>
+          <% else %>
+            <li class="list__user list__user-offline" data-user-id="<%= user.username %>">
+              <%= user.username %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <br />
+    <h4 class="menu menu__chatroom">Posts</h4>
+    <div class="menu">
+      <ul class="list list__post-all" data-post-form="<%= @chatroom.id %>" data-chatroom-id="<%= @chatroom.id %>">
+        <%= render @chatroom.posts, locals: { user: current_user } %>
+      </ul>
+      <p>
+        <span class="menu__chatroom-typing" data-typing-id="<%= @chatroom.id %>"></span>
+      </p>
+      <p>
+        <%= render partial: 'posts/form', locals: { chatroom: @chatroom, post: @post } %>
+      </p>
+    </div>
+  <% end %>
+</div>

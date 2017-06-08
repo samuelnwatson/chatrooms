@@ -1,0 +1,37 @@
+<div>
+  <li>
+    <% if current_user.username != post.user.username %>
+      <div class="list__post list__post-other">
+        <%= emojify(markdown(post.content)) %>
+      </div>
+    <% else %>
+      <div class="list__post list__post-myself">
+        <%= emojify(markdown(post.content)) %>
+      </div>
+    <% end %>
+    <div>
+      <% if post.content %>
+        <% if current_user.username != post.user.username %>
+          <i class="fa fa-user-circle other"></i>
+        <% else %>
+          <i class="fa fa-user-circle myself"></i>
+        <% end %>
+        <span>
+          - <%= post.user.username %>,
+          <%= time_ago_in_words(post.created_at) %> ago
+        </span>
+      <% end %>
+      <% if current_user.is_admin? %>
+        <%= link_to "[ Delete Post ]",
+          post_path(post),
+          class: "menu__element-admin",
+          method: :delete,
+          data: { confirm: "delete post?" }
+        %>
+      <% end %>
+      <% if current_user == post.user %>
+        <%= link_to "[ Edit Post ]", edit_post_path(post), class: "menu__element-admin" %>
+      <% end %>
+    </div>
+  </li>
+</div>
